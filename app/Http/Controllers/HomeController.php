@@ -25,4 +25,13 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function JobPostList()
+  {
+      return view('jobpost_list');
+  }
+  public function ArticleList()
+{
+    return view('article_list');
+}
+
 }
