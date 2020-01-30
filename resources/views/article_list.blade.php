@@ -7,7 +7,7 @@
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">All Articles
                     </h1>
-                    <a href="" class="btn btn-primary float-right">Add Article</a>
+                    <a href="{{ route('create_article') }}" class="btn btn-primary float-right">Add Article</a>
                 </div>
             </main>
         </div>

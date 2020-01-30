@@ -29,9 +29,19 @@ class HomeController extends Controller
   {
       return view('jobpost_list');
   }
-  public function ArticleList()
+    public function ArticleList()
+  {
+      return view('article_list');
+  }
+    public function createJobPost()
+  {
+      return view('job_post_create');
+  }
+
+  public function createArticle()
 {
-    return view('article_list');
+    return view('article_create');
 }
+
 
 }
