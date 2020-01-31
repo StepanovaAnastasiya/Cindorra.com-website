@@ -120,7 +120,7 @@ public function storePost(Request $request)
 
 
    public function updatePost(Request $request, $post_id)
-  {
+{
     $request->validate([
                     'title' => 'required',
                     'body' => 'required',
@@ -153,11 +153,13 @@ public function storePost(Request $request)
 
                case 'article_create':
            $post = Articles::find($post_id);
-   if(Auth::id()==$post->author)
-  {
+
+    if(Auth::id()==$post->author)
+    {
     $post->title = $request->get('title');
     $post->body = $request->get('body');
-    if ($request->hasFile('image')) {
+    if ($request->hasFile('image'))
+    {
         $image = $request->file('image');
         $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
         $destinationPath = public_path('/images');
@@ -166,15 +168,54 @@ public function storePost(Request $request)
     }
     $post->save();
     return redirect()->route('all_articles')->with('status', 'Post has been successfully updated!');
-}
-else
-{
-  return redirect()->route('all_articles')->with('status', 'Error, you can edit only your posts!');
-}
+    }
+
+    else
+    {
+    return redirect()->route('all_articles')->with('status', 'Error, you can edit only your posts!');
+    }
              break;
 
              default:
              return redirect()->route('home')->with('status', 'Error!');
   }
 }
+public function deletePost(Request $request, $post_id)
+   {
+     switch($request->submit)
+     {
+
+           case 'jobpost':
+
+       $post = Job_posts::find($post_id);
+       if(Auth::id()==$post->author)
+       {
+       $post->delete();
+       return redirect()->route('all_jobposts')->with('status', 'Post has been successfully deleted!');
+       }
+       else
+       {
+       return redirect()->route('all_jobposts')->with('status', 'Error, you can delete only your posts!');
+       }
+            break;
+
+            case 'article':
+
+            $post = Articles::find($post_id);
+            if(Auth::id()==$post->author)
+            {
+            $post->delete();
+            return redirect()->route('all_articles')->with('status', 'Article has been successfully deleted!');
+            }
+            else
+            {
+            return redirect()->route('all_articles')->with('status', 'Error, you can delete only your articles!');
+            }
+                 break;
+
+                 default:
+                 return redirect()->route('home')->with('status', 'Error!');
+
+     }
+   }
 }

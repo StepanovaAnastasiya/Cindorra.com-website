@@ -31,7 +31,10 @@
                                      {{ $post->body }}
                                  </p>
                                  <a href="{{ route('edit_job_post_form', ['post_id' => $post->id]) }}" class="card-link btn btn-primary">Edit</a>
-                                 <a href="#" class="card-link btn btn-danger" >delete</a>
+                                 <form action="{{ route('delete_post', ['post_id' => $post->id]) }}" method="post"><br>
+                                      {{ csrf_field() }}
+                                      <button type="submit" name="submit" value="jobpost" class="btn btn-danger" >delete</button>
+                                  </form>
                              </div>
                          </div>
                      </div>
