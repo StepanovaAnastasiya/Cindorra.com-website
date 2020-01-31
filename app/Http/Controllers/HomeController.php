@@ -32,12 +32,12 @@ class HomeController extends Controller
 
     public function JobPostList()
    {
-       $posts = Job_posts::with('writer')->get();
+       $posts = Job_posts::with('writer')->where('author', Auth::id())->get();
        return view('jobpost_list', ['posts' => $posts]);
    }
    public function ArticleList()
   {
-      $posts = Articles::with('writer')->get();
+      $posts = Articles::with('writer')->where('author', Auth::id())->get();
       return view('article_list', ['posts' => $posts]);
   }
 
@@ -121,6 +121,11 @@ public function storePost(Request $request)
 
    public function updatePost(Request $request, $post_id)
   {
+    $request->validate([
+                    'title' => 'required',
+                    'body' => 'required',
+                  ]
+            );
 
       switch($request->submit) {
 
