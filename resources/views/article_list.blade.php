@@ -9,6 +9,12 @@
                     </h1>
                     <a href="{{ route('create_article') }}" class="btn btn-primary float-right">Add Article</a>
                 </div>
+                @if (session('status'))
+                   <div class="alert alert-success">
+                       {{ session('status') }}
+                   </div>
+               @endif
+
             </main>
         </div>
     </div>

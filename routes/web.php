@@ -22,3 +22,4 @@ Route::get('/all/jobposts', 'HomeController@JobPostList')->name('all_jobposts');
 Route::get('/all/articles', 'HomeController@ArticleList')->name('all_articles');
 Route::get('/create/jobpost', 'HomeController@createJobPost')->name('create_job_post');
 Route::get('/create/article', 'HomeController@createArticle')->name('create_article');
+Route::post('/store/post', 'HomeController@storePost')->name('store_new_post');
