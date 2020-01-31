@@ -29,14 +29,18 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
     public function JobPostList()
+   {
+       $posts = Job_posts::with('writer')->get();
+       return view('jobpost_list', ['posts' => $posts]);
+   }
+   public function ArticleList()
   {
-      return view('jobpost_list');
+      $posts = Articles::with('writer')->get();
+      return view('article_list', ['posts' => $posts]);
   }
-    public function ArticleList()
-  {
-      return view('article_list');
-  }
+
     public function createJobPost()
   {
       return view('job_post_create');
@@ -73,7 +77,7 @@ public function storePost(Request $request)
     break;
 
      default:
-     return redirect()->route('home')->with('status', 'Mistake!');
+     return redirect()->route('home')->with('status', 'Error!');
 
        }
 }
