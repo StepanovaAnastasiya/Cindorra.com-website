@@ -90,4 +90,86 @@ public function storePost(Request $request)
        }
 }
 
+
+   public function editJobPost($post_id)
+   {
+       $post =Job_posts::find($post_id);
+       if(Auth::id()==$post->author)
+       {
+           return view('job_post_edit', ['post' => $post]);
+       }
+       else
+       {
+           return redirect()->route('all_jobposts')->with('status', 'Error, you can edit only your posts!');
+       }
+   }
+
+
+   public function editArticle($post_id)
+   {
+       $post =Articles::find($post_id);
+       if(Auth::id()==$post->author)
+       {
+           return view('article_edit', ['post' => $post]);
+       }
+       else
+       {
+           return redirect()->route('all_articles')->with('status', 'Error, you can edit only your articles!');
+       }
+   }
+
+
+   public function updatePost(Request $request, $post_id)
+  {
+
+      switch($request->submit) {
+
+            case 'job_post_create':
+      $post = Job_posts::find($post_id);
+  if(Auth::id()==$post->author)
+  {
+      $post->title = $request->get('title');
+      $post->body = $request->get('body');
+      if ($request->hasFile('image')) {
+          $image = $request->file('image');
+          $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+          $destinationPath = public_path('/images');
+          $image->move($destinationPath, $input['imagename']);
+          $post->image = $input['imagename'];
+      }
+      $post->save();
+      return redirect()->route('all_jobposts')->with('status', 'Post has been successfully updated!');
+  }
+  else
+  {
+    return redirect()->route('all_jobposts')->with('status', 'Error, you can edit only your posts!');
+  }
+               break;
+
+               case 'article_create':
+           $post = Articles::find($post_id);
+   if(Auth::id()==$post->author)
+  {
+    $post->title = $request->get('title');
+    $post->body = $request->get('body');
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/images');
+        $image->move($destinationPath, $input['imagename']);
+        $post->image = $input['imagename'];
+    }
+    $post->save();
+    return redirect()->route('all_articles')->with('status', 'Post has been successfully updated!');
+}
+else
+{
+  return redirect()->route('all_articles')->with('status', 'Error, you can edit only your posts!');
+}
+             break;
+
+             default:
+             return redirect()->route('home')->with('status', 'Error!');
+  }
+}
 }
