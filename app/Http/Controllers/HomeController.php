@@ -55,14 +55,21 @@ public function storePost(Request $request)
         $request->validate([
             'title' => 'required',
             'body' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]
         );
+       $image = $request->file('image');
+       $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+       $destinationPath = public_path('/images');
+       $image->move($destinationPath, $input['imagename']);
+
         switch($request->submit) {
             case 'job_post_create':
         $post = new Job_posts();
         $post->title = $request->get('title');
         $post->body = $request->get('body');
         $post->author = Auth::id();
+        $post->image = $input['imagename'];
         $post->save();
         return redirect()->route('all_jobposts')->with('status', 'New job post has been successfully created!');
         break;
@@ -72,6 +79,7 @@ public function storePost(Request $request)
     $post->title = $request->get('title');
     $post->body = $request->get('body');
     $post->author = Auth::id();
+    $post->image = $input['imagename'];
     $post->save();
     return redirect()->route('all_articles')->with('status', 'New article has been successfully created!');
     break;
