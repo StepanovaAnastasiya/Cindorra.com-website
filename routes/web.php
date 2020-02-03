@@ -1,7 +1,7 @@
 <?php
-
+Route::get('/', 'PostController@index')->name('main');
 Auth::routes();
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/all/jobposts', 'HomeController@JobPostList')->name('all_jobposts');
 Route::get('/all/articles', 'HomeController@ArticleList')->name('all_articles');
 Route::get('/create/jobpost', 'HomeController@createJobPost')->name('create_job_post');
