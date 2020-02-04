@@ -8,9 +8,9 @@ class PostController extends Controller
     public function index()
     {
         $latest_job_post = Job_posts::orderBy('id', 'DESC')->take(3)->get();
-        $job_posts = Job_posts::orderBy('id', 'DESC')->paginate(2);
+        $job_posts = Job_posts::orderBy('id', 'DESC')->paginate(3);
         $latest_articles = Articles::orderBy('id', 'DESC')->take(3)->get();
-        $articles = Articles::orderBy('id', 'DESC')->paginate(2);
+        $articles = Articles::orderBy('id', 'DESC')->paginate(3);
 
 
         $data = [

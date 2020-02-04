@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Cindorra.com</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
@@ -45,6 +45,7 @@
             <div class="col-md-4">
                 @foreach($job_posts as $post)
                     <div class="card mb-3">
+                      <a name="{{ $post->title }}"></a>
                         @if($post->image)
                             <img class="card-img-top" src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" style="height: 200px">
                         @endif
@@ -62,6 +63,7 @@
             <div class="col-md-4">
                 @foreach($articles as $post)
                     <div class="card mb-3">
+                      <a name="{{ $post->title }}"></a>
                         @if($post->image)
                             <img class="card-img-top" src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" style="height: 200px">
                         @endif
@@ -85,7 +87,7 @@
                     <ul class="list-group list-group-flush">
                         @foreach($latest_job_posts as $post)
                         <li class="list-group-item">
-                            <a href="">{{ $post->title }}</a>
+                            <a href="#{{ $post->title }}">{{ $post->title }}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -97,7 +99,7 @@
                     <ul class="list-group list-group-flush">
                         @foreach($latest_articles as $post)
                         <li class="list-group-item">
-                            <a href="">{{ $post->title }}</a>
+                            <a href="#{{ $post->title }}">{{ $post->title }}</a>
                         </li>
                         @endforeach
                     </ul>
