@@ -21,10 +21,8 @@ class PostController extends Controller
 
 
         ];
-<<<<<<< HEAD
+
         return view('indexpage', $data);
-=======
-        return view('welcome', $data);
->>>>>>> origin/master
+
     }
 }

@@ -1,6 +1,4 @@
 <!DOCTYPE HTML>
-
-
 <!--
 	Future Imperfect by HTML5 UP
 	html5up.net | @ajlkn
@@ -69,7 +67,7 @@
 									<li>
 											<a href="#{{ $post->title }}">
 											<h3>{{ $post->title }}</h3>
-											<p>{{ $post->author }}</p>
+											<p>{{ $post->writer->name }}</p>
 											</a>
 									</li>
 									@endforeach
@@ -78,7 +76,7 @@
 										<li>
 											<a href="#{{ $post->title }}">
 											<h3>{{ $post->title }}</h3>
-											<p>{{ $post->author }}</p>
+											<p>{{ $post->writer->name }}</p>
 											</a>
 										</li>
 										@endforeach
@@ -109,81 +107,60 @@
 
 						<!-- Post -->
 							<article class="post">
+								@foreach($job_posts as $post)
 								<header>
 									<div class="title">
-										<h2><a href="single.html">Magna sed adipiscing</a></h2>
-										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
+										<h2><a href="single.html">{{ $post->title }}</a></h2>
+							<!--			<p>{{ $post->title }}</p> -->
 									</div>
 									<div class="meta">
-										<time class="published" datetime="2015-11-01">November 1, 2015</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+										<time class="published" datetime="2015-11-01">{{ $post->created_at }}</time>
+										<a href="#" class="author"><span class="name">{{ $post->writer->name  }}</span><img src="images/avatar.jpg" alt="" /></a>
 									</div>
 								</header>
-								<a href="single.html" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+								<a href="single.html" class="image featured"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
+								<p>{{ $post->body }}</p>
 								<footer>
 									<ul class="actions">
 										<li><a href="single.html" class="button large">Continue Reading</a></li>
 									</ul>
-									<ul class="stats">
+									<!--		<ul class="stats">
 										<li><a href="#">General</a></li>
 										<li><a href="#" class="icon solid fa-heart">28</a></li>
 										<li><a href="#" class="icon solid fa-comment">128</a></li>
-									</ul>
+									</ul>  -->
 								</footer>
+								@endforeach
 							</article>
 
 						<!-- Post -->
 							<article class="post">
+								  @foreach($articles as $post)
 								<header>
 									<div class="title">
-										<h2><a href="single.html">Ultricies sed magna euismod enim vitae gravida</a></h2>
-										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
+										<h2><a href="single.html">{{ $post->title }}</a></h2>
+										<!--			<p>{{ $post->title }}</p> -->
 									</div>
 									<div class="meta">
-										<time class="published" datetime="2015-10-25">October 25, 2015</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+										<time class="published" datetime="2015-10-25">{{ $post->created_at }}</time>
+										<a href="#" class="author"><span class="name">{{$post->writer->name}}</span><img src="images/avatar.jpg" alt="" /></a>
 									</div>
 								</header>
-								<a href="single.html" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper.</p>
+								<a href="single.html" class="image featured"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
+								<p>{{ $post->body }}</p>
 								<footer>
 									<ul class="actions">
 										<li><a href="single.html" class="button large">Continue Reading</a></li>
 									</ul>
-									<ul class="stats">
+								<!-- 	<ul class="stats">
 										<li><a href="#">General</a></li>
 										<li><a href="#" class="icon solid fa-heart">28</a></li>
 										<li><a href="#" class="icon solid fa-comment">128</a></li>
-									</ul>
+									</ul>  -->
 								</footer>
+								@endforeach
 							</article>
 
-						<!-- Post -->
-							<article class="post">
-								<header>
-									<div class="title">
-										<h2><a href="single.html">Euismod et accumsan</a></h2>
-										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
-									</div>
-									<div class="meta">
-										<time class="published" datetime="2015-10-22">October 22, 2015</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-									</div>
-								</header>
-								<a href="single.html" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Cras vehicula tellus eu ligula viverra, ac fringilla turpis suscipit. Quisque vestibulum rhoncus ligula.</p>
-								<footer>
-									<ul class="actions">
-										<li><a href="single.html" class="button large">Continue Reading</a></li>
-									</ul>
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon solid fa-heart">28</a></li>
-										<li><a href="#" class="icon solid fa-comment">128</a></li>
-									</ul>
-								</footer>
-							</article>
 
 						<!-- Post -->
 						<!--
@@ -518,115 +495,93 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 								</header>
 							</section>
 
-						<!-- Mini Posts -->
-							<section>
-								<div class="mini-posts">
+							<!-- Mini Posts -->
+							<!--		<section>
+								<div class="mini-posts">  -->
 
 									<!-- Mini Post -->
-										<article class="mini-post">
+										<!--			<article class="mini-post">
 											<header>
 												<h3><a href="single.html">Vitae sed condimentum</a></h3>
 												<time class="published" datetime="2015-10-20">October 20, 2015</time>
 												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
 											</header>
 											<a href="single.html" class="image"><img src="images/pic04.jpg" alt="" /></a>
-										</article>
+										</article> -->
 
 									<!-- Mini Post -->
-										<article class="mini-post">
+									<!-- 		<article class="mini-post">
 											<header>
 												<h3><a href="single.html">Rutrum neque accumsan</a></h3>
 												<time class="published" datetime="2015-10-19">October 19, 2015</time>
 												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
 											</header>
 											<a href="single.html" class="image"><img src="images/pic05.jpg" alt="" /></a>
-										</article>
+										</article> -->
 
 									<!-- Mini Post -->
-										<article class="mini-post">
+									<!-- 		<article class="mini-post">
 											<header>
 												<h3><a href="single.html">Odio congue mattis</a></h3>
 												<time class="published" datetime="2015-10-18">October 18, 2015</time>
 												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
 											</header>
 											<a href="single.html" class="image"><img src="images/pic06.jpg" alt="" /></a>
-										</article>
+										</article> -->
 
 									<!-- Mini Post -->
-										<article class="mini-post">
+								<!-- 			<article class="mini-post">
 											<header>
 												<h3><a href="single.html">Enim nisl veroeros</a></h3>
 												<time class="published" datetime="2015-10-17">October 17, 2015</time>
 												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
 											</header>
 											<a href="single.html" class="image"><img src="images/pic07.jpg" alt="" /></a>
-										</article>
+										</article> -->
 
-								</div>
-							</section>
+							<!--		</div>
+							</section>  -->
 
 						<!-- Posts List -->
+
 							<section>
 								<ul class="posts">
+									@foreach($job_posts as $post)
 									<li>
 										<article>
 											<header>
-												<h3><a href="single.html">Lorem ipsum fermentum ut nisl vitae</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<h3><a href="single.html">{{ $post->title }}</a></h3>
+												<time class="published" datetime="2015-10-20">{{ $post->created_at }}</time>
 											</header>
-											<a href="single.html" class="image"><img src="images/pic08.jpg" alt="" /></a>
+											<a href="single.html" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}"/></a>
 										</article>
 									</li>
+									@endforeach
+									@foreach($articles as $post)
 									<li>
 										<article>
 											<header>
-												<h3><a href="single.html">Convallis maximus nisl mattis nunc id lorem</a></h3>
-												<time class="published" datetime="2015-10-15">October 15, 2015</time>
+												<h3><a href="single.html">{{ $post->title }}</a></h3>
+												<time class="published" datetime="2015-10-15">{{ $post->created_at }}</time>
 											</header>
-											<a href="single.html" class="image"><img src="images/pic09.jpg" alt="" /></a>
-										</article>
+											<a href="single.html" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
+                    </article>
 									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="single.html">Euismod amet placerat vivamus porttitor</a></h3>
-												<time class="published" datetime="2015-10-10">October 10, 2015</time>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic10.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="single.html">Magna enim accumsan tortor cursus ultricies</a></h3>
-												<time class="published" datetime="2015-10-08">October 8, 2015</time>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic11.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="single.html">Congue ullam corper lorem ipsum dolor</a></h3>
-												<time class="published" datetime="2015-10-06">October 7, 2015</time>
-											</header>
-											<a href="single.html" class="image"><img src="images/pic12.jpg" alt="" /></a>
-										</article>
-									</li>
+									@endforeach
 								</ul>
 							</section>
 
 						<!-- About -->
-							<section class="blurb">
+						<section class="blurb">
 								<h2>About</h2>
 								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.</p>
 								<ul class="actions">
-									<li><a href="#" class="button">Learn More</a></li>
+									<li><a href="{{ url('/home') }}" class="button">Add new article or job post</a></li>
 								</ul>
 							</section>
 
 						<!-- Footer -->
-							<section id="footer">
+				<!--				<section id="footer">
 								<ul class="icons">
 									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
@@ -634,15 +589,11 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 									<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
 									<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 								</ul>
-								<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+							<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
 							</section>
 
-					</section>
+					</section> -->
 
 			</div>
-
-		<!-- Scripts -->
-
-
 	</body>
 </html>
