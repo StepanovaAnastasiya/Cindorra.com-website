@@ -102,12 +102,43 @@
 
 					</section>
 
+
+
 				<!-- Main -->
 					<div id="main">
 
-						<!-- Post -->
-							<article class="post">
+						<section>
+							<ul class="posts">
+								<h3>Latest job posts:</h3>
 								@foreach($job_posts as $post)
+								<li>
+									<article>
+										<header>
+											<h3><a href="single.html">{{ $post->title }}</a></h3>
+											<time class="published" datetime="2015-10-20">{{ $post->created_at }}</time>
+										</header>
+										<a href="single.html" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}"/></a>
+									</article>
+								</li>
+								@endforeach
+							</br>
+								<h3>Latest articles:</h3>
+								@foreach($articles as $post)
+								<li>
+									<article>
+										<header>
+											<h3><a href="single.html">{{ $post->title }}</a></h3>
+											<time class="published" datetime="2015-10-15">{{ $post->created_at }}</time>
+										</header>
+										<a href="single.html" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
+									</article>
+								</li>
+								@endforeach
+							</ul>
+						</section>
+						<!-- Post -->
+								@foreach($job_posts as $post)
+							<article class="post">
 								<header>
 									<div class="title">
 										<h2><a href="single.html">{{ $post->title }}</a></h2>
@@ -130,12 +161,13 @@
 										<li><a href="#" class="icon solid fa-comment">128</a></li>
 									</ul>  -->
 								</footer>
-								@endforeach
 							</article>
+							@endforeach
+
 
 						<!-- Post -->
+						 @foreach($articles as $post)
 							<article class="post">
-								  @foreach($articles as $post)
 								<header>
 									<div class="title">
 										<h2><a href="single.html">{{ $post->title }}</a></h2>
@@ -158,8 +190,9 @@
 										<li><a href="#" class="icon solid fa-comment">128</a></li>
 									</ul>  -->
 								</footer>
-								@endforeach
 							</article>
+							@endforeach
+							  {{ $articles->links('default') }}
 
 
 						<!-- Post -->
@@ -475,13 +508,13 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 							</article>
 						-->
 
-						<!-- Pagination -->
+						<!-- Pagination
 							<ul class="actions pagination">
 								<li><a href="" class="disabled button large previous">Previous Page</a></li>
 								<li><a href="#" class="button large next">Next Page</a></li>
 							</ul>
 
-					</div>
+					</div> -->
 
 				<!-- Sidebar -->
 					<section id="sidebar">
@@ -544,32 +577,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 						<!-- Posts List -->
 
-							<section>
-								<ul class="posts">
-									@foreach($job_posts as $post)
-									<li>
-										<article>
-											<header>
-												<h3><a href="single.html">{{ $post->title }}</a></h3>
-												<time class="published" datetime="2015-10-20">{{ $post->created_at }}</time>
-											</header>
-											<a href="single.html" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}"/></a>
-										</article>
-									</li>
-									@endforeach
-									@foreach($articles as $post)
-									<li>
-										<article>
-											<header>
-												<h3><a href="single.html">{{ $post->title }}</a></h3>
-												<time class="published" datetime="2015-10-15">{{ $post->created_at }}</time>
-											</header>
-											<a href="single.html" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
-                    </article>
-									</li>
-									@endforeach
-								</ul>
-							</section>
+
 
 						<!-- About -->
 						<section class="blurb">
