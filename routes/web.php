@@ -1,6 +1,13 @@
 <?php
+
+
 Route::get('/', 'PostController@index')->name('main');
+
 Auth::routes();
+
+Route::get('/single/jobpost/{post_id}', 'SinglePostController@jobpost')->name('single_jobpost');
+Route::get('/single/article/{post_id}', 'SinglePostController@article')->name('single_article');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/all/jobposts', 'HomeController@JobPostList')->name('all_jobposts');
 Route::get('/all/articles', 'HomeController@ArticleList')->name('all_articles');
