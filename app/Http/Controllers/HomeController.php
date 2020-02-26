@@ -32,12 +32,12 @@ class HomeController extends Controller
 
     public function JobPostList()
    {
-       $posts = Job_posts::with('writer')->where('author', Auth::id())->get();
+       $posts = Job_posts::with('writer')->where('author', Auth::id())->orderBy('id', 'DESC')->paginate(3);
        return view('jobpost_list', ['posts' => $posts]);
    }
    public function ArticleList()
   {
-      $posts = Articles::with('writer')->where('author', Auth::id())->get();
+      $posts = Articles::with('writer')->where('author', Auth::id())->orderBy('id', 'DESC')->paginate(3);
       return view('article_list', ['posts' => $posts]);
   }
 
