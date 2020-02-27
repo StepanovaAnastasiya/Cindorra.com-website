@@ -30,6 +30,7 @@
 								@endforeach
 							</ul>
 						</section>
+
 						<!-- Post -->
 								@foreach($job_posts as $post)
 							<article class="post">
@@ -40,7 +41,7 @@
 									</div>
 									<div class="meta">
 										<time class="published" datetime="2015-11-01">{{ $post->created_at }}</time>
-										<a href="#" class="author"><span class="name">{{ $post->writer->name  }}</span><img src="images/avatar.jpg" alt="" /></a>
+										<span class="name">{{ $post->writer->name  }}</span>
 									</div>
 								</header>
 								<a href="{{ route('single_jobpost', ['post_id' => $post->id])  }}" class="image featured"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
@@ -69,7 +70,7 @@
 									</div>
 									<div class="meta">
 										<time class="published" datetime="2015-10-25">{{ $post->created_at }}</time>
-										<a href="#" class="author"><span class="name">{{$post->writer->name}}</span><img src="images/avatar.jpg" alt="" /></a>
+										<span class="name">{{$post->writer->name}}</span>
 									</div>
 								</header>
 								<a href="{{ route('single_article', ['post_id' => $post->id])  }}" class="image featured"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>

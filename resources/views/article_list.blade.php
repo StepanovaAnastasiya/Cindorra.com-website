@@ -26,7 +26,7 @@
 
           <form action="{{ route('delete_post', ['post_id' => $post->id]) }}" method="post">
           {{ csrf_field() }}
-          <button type="submit" name="submit" value="jobpost" class="button large" >Delete</button>
+          <button type="submit" name="submit" value="article" class="button large" >Delete</button>
           </form>
              </ul>
           <a href="{{ route('single_article', ['post_id' => $post->id]) }}" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}"/></a>
