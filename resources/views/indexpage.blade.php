@@ -5,7 +5,7 @@
 
 						<section>
 							<ul class="posts">
-								@foreach($latest_posts as $post)
+								@foreach($posts as $post)
 								<li>
 									<article>
 										<header>
