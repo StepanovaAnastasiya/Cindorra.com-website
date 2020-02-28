@@ -19,15 +19,15 @@ class Post extends Model
     //        ]
     //    ];
 //
-//public function category(){
+public function category($post_id){
   // $post_id = $this->id->get();
-  // $category = DB::table('categories')
-  //->select('title', 'slug')
-  //->join('incats', 'categories.id', '=', 'incats.cat_id')
-  //->where('post_id', '=', $post_id)
-  //->get();
-  //return $category;
-//  }
+   $category = DB::table('categories')
+  ->select('title', 'slug')
+  ->join('incats', 'categories.id', '=', 'incats.cat_id')
+  ->where('post_id', '=', $post_id)
+  ->get();
+  return $category;
+  }
 
   public function writer()
  {

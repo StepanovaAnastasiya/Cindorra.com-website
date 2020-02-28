@@ -13,7 +13,7 @@ class AddSlugToArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::table('articles', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
              $table->string('slug')->nullable()->index();
         });
     }
@@ -25,7 +25,7 @@ class AddSlugToArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
           $table->dropColumn('slug');
         });
     }

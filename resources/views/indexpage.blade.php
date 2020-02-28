@@ -9,7 +9,8 @@
 								<li>
 									<article>
 										<header>
-											<h3><a href="{{ route('single_post',['post_id' => $post->id])  }}">{{ $post->title }}</a></h3>
+											<h3><a href="{{ route('single_post',['post_id' => $post->id])  }}">{{ $post->title}}</a></h3>
+											<h3><a href="{{ route('single_post',['post_id' => $post->id])  }}">Category: {{ $post->category($post->id)}}</a></h3>
 											<time class="published" datetime="2015-10-15">{{ $post->created_at }}</time>
 										</header>
 										<a href="{{ route('single_post', ['post_id' => $post->id])  }}" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
