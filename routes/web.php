@@ -5,17 +5,14 @@ Route::get('/', 'PostController@index')->name('main');
 
 Auth::routes();
 
-Route::get('/single/jobpost/{post_id}', 'SinglePostController@jobpost')->name('single_jobpost');
-Route::get('/single/article/{post_id}', 'SinglePostController@article')->name('single_article');
+Route::get('/single/post/{post_id}', 'SinglePostController@show')->name('single_post');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/all/jobposts', 'HomeController@JobPostList')->name('all_jobposts');
-Route::get('/all/articles', 'HomeController@ArticleList')->name('all_articles');
-Route::get('/create/jobpost', 'HomeController@createJobPost')->name('create_job_post');
-Route::get('/create/article', 'HomeController@createArticle')->name('create_article');
-Route::post('/store/post', 'HomeController@storePost')->name('store_new_post');
-Route::get('/edit/job/post/{post_id}', 'HomeController@editJobPost')->name('edit_job_post_form');
-Route::get('/edit/article/{post_id}', 'HomeController@editArticle')->name('edit_article_form');
+
+Route::get('/all/posts', 'HomeController@postList')->name('all_posts');
+Route::get('/create/post', 'HomeController@createPost')->name('create_post');
+Route::post('/store/post', 'HomeController@storePost')->name('store_post');
+Route::get('/edit/post/{post_id}', 'HomeController@editPost')->name('edit_post');
 Route::post('/update/post/{post_id}', 'HomeController@updatePost')->name('update_post');
 Route::post('/delete/post/{post_id}', 'HomeController@deletePost')->name('delete_post');
 
