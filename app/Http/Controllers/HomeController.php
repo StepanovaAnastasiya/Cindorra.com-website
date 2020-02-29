@@ -6,6 +6,7 @@ use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -43,6 +44,7 @@ class HomeController extends Controller
 public function storePost(Request $request)
     {
         $request->validate([
+            'category' => 'required',
             'title' => 'required',
             'body' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -59,6 +61,8 @@ public function storePost(Request $request)
         $post->author = Auth::id();
         $post->image = $input['imagename'];
         $post->save();
+        $category = $request->get('category');
+        DB::insert('insert into incats (post_id, cat_id) values (?, ?)', [$post->id, $category]);
         return redirect()->route('all_posts')->with('status', 'New post has been successfully created!');
 
        }
