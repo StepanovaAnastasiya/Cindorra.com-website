@@ -10,7 +10,7 @@
 									<article>
 										<header>
 											<h3><a href="{{ route('single_post',['post_id' => $post->id])  }}">{{ $post->title}}</a></h3>
-											<h3><a href="{{ route('single_post',['post_id' => $post->id])  }}">Category: {{ $post->category($post->id)}}</a></h3>
+											<p>Category: {{ $post->category($post->id)->title }}</p>
 											<time class="published" datetime="2015-10-15">{{ $post->created_at }}</time>
 										</header>
 										<a href="{{ route('single_post', ['post_id' => $post->id])  }}" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
@@ -26,7 +26,7 @@
 								<header>
 									<div class="title">
 										<h2><a href="{{ route('single_post', ['post_id' => $post->id])  }}">{{ $post->title }}</a></h2>
-										<!--			<p>{{ $post->title }}</p> -->
+										<p>Category: {{ $post->category($post->id)->title }}</p>
 									</div>
 									<div class="meta">
 										<time class="published" datetime="2015-10-25">{{ $post->created_at }}</time>

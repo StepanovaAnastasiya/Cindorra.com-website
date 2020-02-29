@@ -28,7 +28,7 @@ public function category($post_id){
   ->select('title', 'slug')
   ->join('incats', 'categories.id', '=', 'incats.cat_id')
   ->where('post_id', '=', $post_id)
-  ->get();
+  ->first();
   return $category;
   }
 
