@@ -10,8 +10,8 @@
                     <form action="{{ route('store_post') }}" method="post"enctype="multipart/form-data">
                                               {{ csrf_field() }}
 
-   <p><select size="3" required name="category">
-    <option disabled>Please choose category</option>
+   <p><select required name="category">
+    <option disabled selected>Please choose category</option>
     <option value="1">Job post</option>
     <option value="2">Article</option>
    </select></p>

@@ -88,6 +88,7 @@ public function storePost(Request $request)
     $request->validate([
                     'title' => 'required',
                     'body' => 'required',
+                    'category' => 'required',
                   ]
             );
 
@@ -104,6 +105,8 @@ public function storePost(Request $request)
           $post->image = $input['imagename'];
       }
       $post->save();
+      $category = $request->get('category');
+      DB::insert('update incats set cat_id = ? where post_id = ?', [$category,$post->id]);
       return redirect()->route('all_posts')->with('status', 'Post has been successfully updated!');
   }
   else

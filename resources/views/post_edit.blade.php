@@ -9,6 +9,11 @@
                 </div>
                     <form action="{{ route('update_post', ['post_id' => $post->id]) }}" method="post"enctype="multipart/form-data">
                                               {{ csrf_field() }}
+                                              <p><select required name="category">
+                                               <option disabled selected>Please choose category</option>
+                                               <option value="1">Job post</option>
+                                               <option value="2">Article</option>
+                                              </select></p>
                         <div class="form-group">
                             <label for="title">Title</label>
                             <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter article title" name="title" value="{{ $post->title }}" required>
