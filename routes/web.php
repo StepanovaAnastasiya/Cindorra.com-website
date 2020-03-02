@@ -5,7 +5,7 @@ Route::get('/', 'PostController@index')->name('main');
 
 Auth::routes();
 
-Route::get('/single/post/{post_id}', 'SinglePostController@show')->name('single_post');
+Route::get('/single/post/{slug}', 'SinglePostController@show')->name('single_post');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

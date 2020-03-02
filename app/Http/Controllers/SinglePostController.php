@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 class SinglePostController extends Controller
 {
 
-  public function show($post_id)
+  public function show($slug)
   {
-      $post = Post::find($post_id);
+
+      $post = Post::where('slug',$slug)->first();
       return view('single',['post' => $post]);
 
   }
