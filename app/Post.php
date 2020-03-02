@@ -2,7 +2,7 @@
 
 namespace App;
 
-// use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,16 +11,16 @@ use Illuminate\Support\Facades\DB;
 class Post extends Model
 {
 
-// use Sluggable;
+use Sluggable;
 
-//  public function sluggable()
-//    {
-//        return [
-//            'slug' => [
-//              'source' => 'title'
-//            ]
-//        ];
-//    }
+  public function sluggable()
+  {
+            return [
+            'slug' => [
+              'source' => 'title'
+            ]
+            ];
+   }
 
 public function category($post_id){
 
