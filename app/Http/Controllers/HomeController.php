@@ -29,7 +29,7 @@ class HomeController extends Controller
         $posts = Post::with('writer')->where('author', Auth::id())->orderBy('id', 'DESC')->paginate(3);
         return view('home', ['posts' => $posts]);
 
-   }  
+   }
 
 
   public function createPost()
@@ -58,7 +58,7 @@ public function storePost(Request $request)
         $post->save();
         $category = $request->get('category');
         DB::insert('insert into incats (post_id, cat_id) values (?, ?)', [$post->id, $category]);
-        return redirect()->route('all_posts')->with('status', 'New post has been successfully created!');
+        return redirect()->route('home')->with('status', 'New post has been successfully created!');
 
        }
 
@@ -73,7 +73,7 @@ public function storePost(Request $request)
        }
        else
        {
-           return redirect()->route('all_posts')->with('status', 'Error, you can edit only your posts!');
+           return redirect()->route('home')->with('status', 'Error, you can edit only your posts!');
        }
    }
 
@@ -103,11 +103,11 @@ public function storePost(Request $request)
       $category = $request->get('category');
       DB::insert('update incats set cat_id = ? where post_id = ?', [$category,$post->id]);
     }
-      return redirect()->route('all_posts')->with('status', 'Post has been successfully updated!');
+      return redirect()->route('home')->with('status', 'Post has been successfully updated!');
   }
   else
   {
-    return redirect()->route('all_posts')->with('status', 'Error, you can edit only your posts!');
+    return redirect()->route('home')->with('status', 'Error, you can edit only your posts!');
   }
 }
 
@@ -117,11 +117,11 @@ public function deletePost(Request $request, $post_id)
        if(Auth::id()==$post->author)
        {
        $post->delete();
-       return redirect()->route('all_posts')->with('status', 'Post has been successfully deleted!');
+       return redirect()->route('home')->with('status', 'Post has been successfully deleted!');
        }
        else
        {
-       return redirect()->route('all_posts')->with('status', 'Error, you can delete only your posts!');
+       return redirect()->route('home')->with('status', 'Error, you can delete only your posts!');
        }
    }
 }

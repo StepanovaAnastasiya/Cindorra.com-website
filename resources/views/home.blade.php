@@ -12,6 +12,11 @@
             </main>
         </div>
 
+            @if (session('status'))
+               <h4>
+                   {{ session('status') }}
+               </h4>
+           @endif
         <ul class="actions">
           <li><a href="{{ route('create_post') }}" class="button large">Add a new post</a></li>
         </ul>
@@ -24,6 +29,7 @@
               <article>
                 <header>
                   <h3><a href="{{ route('single_post', ['post_id' => $post->id]) }}">{{ $post->title }}</a></h3>
+                  <p>Category: {{ $post->category($post->id)->title }}</p>
                   <time class="published" datetime="2015-10-20">{{ $post->created_at }}</time>
                 </header>
                   <ul class="actions">
@@ -45,10 +51,5 @@
         </section>
  </div>
 
-    @if (session('status'))
-       <div class="alert alert-danger">
-           {{ session('status') }}
-       </div>
-   @endif
  </div>
  @endsection
