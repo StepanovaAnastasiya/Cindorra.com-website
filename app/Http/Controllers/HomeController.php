@@ -26,15 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $posts = Post::with('writer')->where('author', Auth::id())->orderBy('id', 'DESC')->paginate(3);
+        return view('home', ['posts' => $posts]);
 
-        return view('home');
-    }
-
-   public function PostList()
-  {
-      $posts = Post::with('writer')->where('author', Auth::id())->orderBy('id', 'DESC')->paginate(3);
-      return view('post_list', ['posts' => $posts]);
-  }
+   }  
 
 
   public function createPost()

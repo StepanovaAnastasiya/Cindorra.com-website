@@ -9,7 +9,7 @@ Route::get('/single/post/{post_id}', 'SinglePostController@show')->name('single_
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/all/posts', 'HomeController@postList')->name('all_posts');
+
 Route::get('/create/post', 'HomeController@createPost')->name('create_post');
 Route::post('/store/post', 'HomeController@storePost')->name('store_post');
 Route::get('/edit/post/{post_id}', 'HomeController@editPost')->name('edit_post');
