@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class HomeController extends Controller
 {
@@ -64,9 +65,9 @@ public function storePost(Request $request)
 
 
 
-   public function editPost($post_id)
+   public function editPost($slug)
    {
-       $post =Post::find($post_id);
+       $post =Post::where('slug',$slug)->first();;
        if(Auth::id()==$post->author)
        {
            return view('post_edit', ['post' => $post]);
@@ -78,7 +79,7 @@ public function storePost(Request $request)
    }
 
 
-   public function updatePost(Request $request, $post_id)
+   public function updatePost(Request $request, $slug)
 {
     $request->validate([
                     'title' => 'required',
@@ -86,11 +87,13 @@ public function storePost(Request $request)
                   ]
             );
 
-      $post = Post::find($post_id);
+      $post = Post::where('slug',$slug)->first();
   if(Auth::id()==$post->author)
   {
+
       $post->title = $request->get('title');
       $post->body = $request->get('body');
+
       if ($request->hasFile('image')) {
           $image = $request->file('image');
           $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
@@ -98,7 +101,12 @@ public function storePost(Request $request)
           $image->move($destinationPath, $input['imagename']);
           $post->image = $input['imagename'];
       }
+
       $post->save();
+      $post->slug = null;
+      $post->update(['title' => $request->get('title')]);
+
+
         if ($request->get('category')) {
       $category = $request->get('category');
       DB::insert('update incats set cat_id = ? where post_id = ?', [$category,$post->id]);
@@ -111,9 +119,9 @@ public function storePost(Request $request)
   }
 }
 
-public function deletePost(Request $request, $post_id)
+public function deletePost(Request $request, $slug)
    {
-       $post = Post::find($post_id);
+       $post = Post::where('slug',$slug)->first();;
        if(Auth::id()==$post->author)
        {
        $post->delete();

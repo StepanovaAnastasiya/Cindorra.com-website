@@ -7,7 +7,7 @@
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Edit Post</h1>
                 </div>
-                    <form action="{{ route('update_post', ['post_id' => $post->id]) }}" method="post"enctype="multipart/form-data">
+                    <form action="{{ route('update_post', ['slug' => $post->slug]) }}" method="post"enctype="multipart/form-data">
                                               {{ csrf_field() }}
                                               <p><select required name="category">
                                                <option disabled selected>Please choose category</option>

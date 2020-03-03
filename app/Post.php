@@ -22,6 +22,8 @@ use Sluggable;
             ];
    }
 
+protected $fillable = ['title'];
+
 public function category($post_id){
 
    $category = DB::table('categories')

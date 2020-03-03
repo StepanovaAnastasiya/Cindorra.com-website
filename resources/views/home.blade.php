@@ -28,19 +28,19 @@
             <li>
               <article>
                 <header>
-                  <h3><a href="{{ route('single_post', ['post_id' => $post->id]) }}">{{ $post->title }}</a></h3>
+                  <h3><a href="{{ route('single_post', ['slug' => $post->slug]) }}">{{ $post->title }}</a></h3>
                   <p>Category: {{ $post->category($post->id)->title }}</p>
                   <time class="published" datetime="2015-10-20">{{ $post->created_at }}</time>
                 </header>
                   <ul class="actions">
-                <a href="{{ route('edit_post', ['post_id' => $post->id]) }}" class="button large">Edit</a>
+                <a href="{{ route('edit_post', ['slug' => $post->slug]) }}" class="button large">Edit</a>
 
-                <form action="{{ route('delete_post', ['post_id' => $post->id]) }}" method="post">
+                <form action="{{ route('delete_post', ['slug' => $post->slug]) }}" method="post">
                 {{ csrf_field() }}
                 <button type="submit" name="submit" value="article" class="button large" >Delete</button>
                 </form>
                    </ul>
-                <a href="{{ route('single_post', ['post_id' => $post->id]) }}" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}"/></a>
+                <a href="{{ route('single_post', ['slug' => $post->slug]) }}" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}"/></a>
 
               </article>
             </li>

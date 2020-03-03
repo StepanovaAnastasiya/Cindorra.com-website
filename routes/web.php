@@ -12,9 +12,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/create/post', 'HomeController@createPost')->name('create_post');
 Route::post('/store/post', 'HomeController@storePost')->name('store_post');
-Route::get('/edit/post/{post_id}', 'HomeController@editPost')->name('edit_post');
-Route::post('/update/post/{post_id}', 'HomeController@updatePost')->name('update_post');
-Route::post('/delete/post/{post_id}', 'HomeController@deletePost')->name('delete_post');
+Route::get('/edit/post/{slug}', 'HomeController@editPost')->name('edit_post');
+Route::post('/update/post/{slug}', 'HomeController@updatePost')->name('update_post');
+Route::post('/delete/post/{slug}', 'HomeController@deletePost')->name('delete_post');
 
 // Route::domain('{admin}.domain.com')->group(function () {
 //     Auth::routes();
