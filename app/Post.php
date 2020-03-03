@@ -24,15 +24,15 @@ use Sluggable;
 
 protected $fillable = ['title'];
 
-public function category($post_id){
-
+public function category($post_id)
+  {
    $category = DB::table('categories')
   ->select('title', 'slug')
   ->join('incats', 'categories.id', '=', 'incats.cat_id')
   ->where('post_id', '=', $post_id)
   ->first();
   return $category;
-  }
+  }  
 
   public function writer()
  {

@@ -2,6 +2,7 @@
 
 
 Route::get('/', 'PostController@index')->name('main');
+Route::get('/{cat_slug}', 'PostController@cat_search')->name('cat_search');
 
 Auth::routes();
 

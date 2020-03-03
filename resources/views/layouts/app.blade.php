@@ -11,7 +11,7 @@
 		<script src="{{ asset('js/breakpoints.min.js') }}" defer></script>
 		<script src="{{ asset('js/util.js') }}" defer></script>
 		<script src="{{ asset('js/main.js') }}" defer></script>
-		
+
 		<link rel="stylesheet" href="{{ asset('css/main.css') }}" />
 	</head>
 	<body class="is-preload">
@@ -22,15 +22,12 @@
 				<!-- Header -->
 					<header id="header">
 						<h1><a href="{{ route('main') }}">Cindorra</a></h1>
-						<!-- <nav class="links">
+						 <nav class="links">
 							<ul>
-								<li><a href="#">Lorem</a></li>
-								<li><a href="#">Ipsum</a></li>
-								<li><a href="#">Feugiat</a></li>
-								<li><a href="#">Tempus</a></li>
-								<li><a href="#">Adipiscing</a></li>
+								<li><a href="{{ route('cat_search', ['cat_slug' => 'job-posts']) }}">Job posts</a></li>
+								<li><a href="{{ route('cat_search', ['cat_slug' => 'articles']) }}">Articles</a></li>
 							</ul>
-						</nav> -->
+						</nav>
 						<nav class="main">
 							<ul>
 								<li class="search">
