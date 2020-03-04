@@ -2,9 +2,11 @@
 
 
 Route::get('/', 'PostController@index')->name('main');
-Route::get('/{cat_slug}', 'PostController@cat_search')->name('cat_search');
+
 
 Auth::routes();
+
+Route::get('/category/{cat_slug}', 'PostController@cat_search')->name('cat_search');
 
 Route::get('/single/post/{slug}', 'SinglePostController@show')->name('single_post');
 
