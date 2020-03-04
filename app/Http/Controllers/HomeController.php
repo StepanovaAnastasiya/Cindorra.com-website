@@ -65,7 +65,7 @@ public function storePost(Request $request)
 
 
 
-   public function editPost($slug)
+   public function editPost($cat_slug, $slug)
    {
        $post =Post::where('slug',$slug)->first();;
        if(Auth::id()==$post->author)
