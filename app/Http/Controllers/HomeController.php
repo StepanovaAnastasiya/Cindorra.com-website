@@ -46,6 +46,7 @@ public function storePost(Request $request)
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]
         );
+
        $image = $request->file('image');
        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
        $destinationPath = public_path('/images');
@@ -67,7 +68,7 @@ public function storePost(Request $request)
 
    public function editPost($cat_slug, $slug)
    {
-       $post =Post::where('slug',$slug)->first();;
+       $post =Post::where('slug',$slug)->first();
        if(Auth::id()==$post->author)
        {
            return view('post_edit', ['post' => $post]);

@@ -32,11 +32,12 @@ public function category($post_id)
   ->where('post_id', '=', $post_id)
   ->first();
   return $category;
-  }  
+  }
 
   public function writer()
  {
     return $this->belongsTo('App\User', 'author', 'id');
  }
+ 
 
 }
