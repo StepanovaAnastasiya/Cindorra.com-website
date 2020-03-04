@@ -34,7 +34,7 @@
 									</div>
 								</header>
 								<a href="{{ route('single_post',['cat_slug' => $post->category($post->id)->slug, 'slug' => $post->slug])  }}" class="image featured"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
-								<p>{{ $post->body }}</p>
+								<p>{!! Str::words($post->body, 100, ' ...') !!}</p>
 								<footer>
 									<ul class="actions">
 										<li><a href="{{ route('single_post',['cat_slug' => $post->category($post->id)->slug, 'slug' => $post->slug])  }}" class="button large">Continue Reading</a></li>
