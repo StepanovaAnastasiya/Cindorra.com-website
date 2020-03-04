@@ -9,11 +9,11 @@
 								<li>
 									<article>
 										<header>
-											<h3><a href="{{ route('single_post',['slug' => $post->slug])  }}">{{ $post->title}}</a></h3>
+											<h3><a href="{{ route('single_post',['cat_slug' => $post->category($post->id)->slug, 'slug' => $post->slug])  }}">{{ $post->title}}</a></h3>
 											<p>Category: {{ $post->category($post->id)->title }}</p>
 											<time class="published" datetime="2015-10-15">{{ $post->created_at }}</time>
 										</header>
-										<a href="{{ route('single_post', ['slug' => $post->slug])  }}" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
+										<a href="{{ route('single_post',['cat_slug' => $post->category($post->id)->slug, 'slug' => $post->slug])  }}" class="image"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
 									</article>
 								</li>
 								@endforeach
@@ -25,7 +25,7 @@
 							<article class="post">
 								<header>
 									<div class="title">
-										<h2><a href="{{ route('single_post', ['slug' => $post->slug])  }}">{{ $post->title }}</a></h2>
+										<h2><a href="{{ route('single_post',['cat_slug' => $post->category($post->id)->slug, 'slug' => $post->slug])  }}">{{ $post->title }}</a></h2>
 										<p>Category: {{ $post->category($post->id)->title }}</p>
 									</div>
 									<div class="meta">
@@ -33,11 +33,11 @@
 										<span class="name">{{$post->writer->name}}</span>
 									</div>
 								</header>
-								<a href="{{ route('single_post', ['slug' => $post->slug])  }}" class="image featured"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
+								<a href="{{ route('single_post',['cat_slug' => $post->category($post->id)->slug, 'slug' => $post->slug])  }}" class="image featured"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></a>
 								<p>{{ $post->body }}</p>
 								<footer>
 									<ul class="actions">
-										<li><a href="{{ route('single_post',['slug' => $post->slug])  }}" class="button large">Continue Reading</a></li>
+										<li><a href="{{ route('single_post',['cat_slug' => $post->category($post->id)->slug, 'slug' => $post->slug])  }}" class="button large">Continue Reading</a></li>
 									</ul>
 								<!-- 	<ul class="stats">
 										<li><a href="#">General</a></li>

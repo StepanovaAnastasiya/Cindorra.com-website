@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class SinglePostController extends Controller
 {
 
-  public function show($slug)
+  public function show($cat_slug, $slug)
   {
 
       $post = Post::where('slug',$slug)->first();
