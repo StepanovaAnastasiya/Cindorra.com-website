@@ -121,11 +121,12 @@ public function storePost(Request $request)
 
 public function deletePost(Request $request, $slug)
    {
-       $post = Post::where('slug',$slug)->first();;
+       $post = Post::where('slug',$slug)->first();
+       $title= $post->title;
        if(Auth::id()==$post->author)
        {
        $post->delete();
-       return redirect()->route('home')->with('status', 'Post has been successfully deleted!');
+       return redirect()->route('home')->with('status', "Post \"$title\" has been successfully deleted!");
        }
        else
        {
