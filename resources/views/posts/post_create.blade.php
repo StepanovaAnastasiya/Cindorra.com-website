@@ -1,25 +1,29 @@
 @extends('layouts.app')
 @section('content')
+<style media="screen">
+  form, button {
+    width: 100%
+  }
+</style>
     <div class="container-fluid">
         <div class="row">
-
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Create A new Post</h1>
+                <div class="align-items-center border-bottom">
+                    <h1 class="h1">Add New Post</h1>
                 </div>
                     <form action="{{ route('store_post') }}" method="post"enctype="multipart/form-data">
                                               {{ csrf_field() }}
 
-   <p><select required name="category">
-    <option disabled selected>Please choose category</option>
-    <option value="1">Job post</option>
-    <option value="2">Article</option>
-   </select></p>
-
+                   <div class="form-group">
+                     <select required name="category">
+                      <option disabled selected>Please choose category</option>
+                      <option value="1">Job post</option>
+                      <option value="2">Article</option>
+                     </select>
+                   </div>
 
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter article title" name="title" required>
+                            <input type="text" class="form-control" placeholder="Title" name="title" required>
                         </div>
                         </br>
                         <div class="form-group">
@@ -29,12 +33,13 @@
                         </br>
                         <div class="form-group">
                           <label for="exampleFormControlFile1">Feature Image</label>
-                          <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" required>
+                          <input type="file" class="form-control-file" name="image" required>
                       </div>
                       </br>
+                      <div class="form-group">
                         <button type="submit" class="btn btn-primary">Create</button>
+                      </div>
                     </form>
-            </main>
         </div>
     </div>
 @endsection

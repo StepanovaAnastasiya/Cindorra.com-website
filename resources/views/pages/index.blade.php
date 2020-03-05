@@ -47,7 +47,7 @@
 								</footer>
 							</article>
 							@endforeach
-							  {{ $posts->links('default') }}
+							  {{ $posts->links() }}
 
 
 				<!-- Sidebar -->

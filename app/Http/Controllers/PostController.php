@@ -8,27 +8,39 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-    public function index()
+    public function show($cat_slug, $slug)
     {
-      //  $latest_posts = Post::orderBy('id', 'DESC')->take(3)->get();
-        $posts = Post::orderBy('id', 'DESC')->paginate(3);
-        return view('indexpage', ['posts' => $posts]);
 
+        $post = Post::where('slug',$slug)->first();
+        return view('posts.single',['post' => $post]);
     }
-    public function cat_search($cat_slug)
-    {
-        $category = DB::table('categories')
-        ->where('slug', '=', $cat_slug)
-        ->first();
-        $posts_id = DB::table('incats')
-        ->where('cat_id', '=', $category->id)
-        ->get();
-        $id_array = [];
-        foreach ($posts_id as $post) {
-        $id_array [] = $post->post_id;
-        }
-        $posts = Post::whereIn('id',$id_array)->orderBy('id', 'DESC')->paginate(3);
-        return view('indexpage', ['posts' => $posts]);
 
+    /**
+     * Explore all posts || explore posts by given category.
+     *
+     * @param  string $category
+     * @return \Illuminate\Http\Response
+     */
+    public function explore($category = null)
+    {
+        if (isset($category)) {
+            $cat_id = DB::table('categories')->where('cat_slug', $category)->pluck('id');
+            if ($cat_id->count() === 0) {
+                return redirect()->to('/explore')->send();
+            }
+            $posts = DB::table('posts')
+                ->select('title', 'slug', 'body', 'image', 'created_at')
+                ->join('categories', 'posts.id', '=', 'incats.post_id')
+                ->where('categories.id', '=', $cat_id)
+                ->paginate(15);
+        } else {
+            $posts = DB::table('posts')->orderBy('created_at', 'desc')->paginate(15);
+        }
+
+        if (empty($posts)) {
+            return abort(404);
+        }
+
+        return view('posts.explore')->with('posts', $posts);
     }
 }
