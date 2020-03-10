@@ -21,17 +21,18 @@ class PostController extends Controller
      * @param  string $category
      * @return \Illuminate\Http\Response
      */
-    public function explore($category = null)
+    public function explore($cat_slug = null)
     {
-        if (isset($category)) {
-            $cat_id = DB::table('categories')->where('cat_slug', $category)->pluck('id');
+        if (isset($cat_slug)) {
+            $cat_id = DB::table('categories')->where('slug', $cat_slug)->pluck('id');
             if ($cat_id->count() === 0) {
                 return redirect()->to('/explore')->send();
             }
             $posts = DB::table('posts')
-                ->select('title', 'slug', 'body', 'image', 'created_at')
-                ->join('categories', 'posts.id', '=', 'incats.post_id')
-                ->where('categories.id', '=', $cat_id)
+                ->select('posts.title', 'posts.slug', 'body', 'image', 'created_at','categories.title')
+                ->join('incats', 'posts.id', '=', 'incats.post_id')
+                ->join('categories', 'incats.cat_id', '=', 'categories.id')
+                ->where('incats.cat_id', '=', $cat_id)
                 ->paginate(15);
         } else {
             $posts = DB::table('posts')->orderBy('created_at', 'desc')->paginate(15);
@@ -40,7 +41,7 @@ class PostController extends Controller
         if (empty($posts)) {
             return abort(404);
         }
-
+        dd($posts);
         return view('posts.explore')->with('posts', $posts);
     }
 }
