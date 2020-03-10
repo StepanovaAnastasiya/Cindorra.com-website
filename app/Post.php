@@ -27,7 +27,7 @@ protected $fillable = ['title'];
 public function category($post_id)
   {
    $category = DB::table('categories')
-  ->select('title', 'slug')
+  ->select('cat_title', 'cat_slug')
   ->join('incats', 'categories.id', '=', 'incats.cat_id')
   ->where('post_id', '=', $post_id)
   ->first();
@@ -38,6 +38,6 @@ public function category($post_id)
  {
     return $this->belongsTo('App\User', 'author', 'id');
  }
- 
+
 
 }

@@ -24,16 +24,18 @@ class PostController extends Controller
     public function explore($cat_slug = null)
     {
         if (isset($cat_slug)) {
-            $cat_id = DB::table('categories')->where('slug', $cat_slug)->pluck('id');
+            $cat_id = DB::table('categories')->where('cat_slug', $cat_slug)->pluck('id');
             if ($cat_id->count() === 0) {
                 return redirect()->to('/explore')->send();
             }
-            $posts = DB::table('posts')
-                ->select('posts.title', 'posts.slug', 'body', 'image', 'created_at','categories.title')
-                ->join('incats', 'posts.id', '=', 'incats.post_id')
+            $posts = DB::table('incats')
+                ->select('title', 'slug', 'body', 'image', 'created_at','cat_title','cat_slug','name')
+                ->join('posts', 'incats.post_id','=','posts.id')
                 ->join('categories', 'incats.cat_id', '=', 'categories.id')
+                ->join('users', 'posts.author', '=', 'users.id')
                 ->where('incats.cat_id', '=', $cat_id)
                 ->paginate(15);
+
         } else {
             $posts = DB::table('posts')->orderBy('created_at', 'desc')->paginate(15);
         }
@@ -41,7 +43,7 @@ class PostController extends Controller
         if (empty($posts)) {
             return abort(404);
         }
-        dd($posts);
+  
         return view('posts.explore')->with('posts', $posts);
     }
 }
