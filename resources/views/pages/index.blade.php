@@ -47,7 +47,7 @@
 								</footer>
 							</article>
 							@endforeach
-							  {{ $posts->links() }}
+							  {{ $posts->links('inc.pagination') }}
 
 
 				<!-- Sidebar -->

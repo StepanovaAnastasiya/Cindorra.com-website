@@ -24,8 +24,8 @@
 						<h1><a href="{{ route('main') }}">Cindorra</a></h1>
 						 <nav class="links">
 							<ul>
-								<li><a href="{{ route('cat_search', ['cat_slug' => 'job-posts']) }}">Job posts</a></li>
-								<li><a href="{{ route('cat_search', ['cat_slug' => 'articles']) }}">Articles</a></li>
+								<li><a href="{{ route('explore', ['cat_slug' => 'job-posts']) }}">Job posts</a></li>
+								<li><a href="{{ route('explore', ['cat_slug' => 'articles']) }}">Articles</a></li>
 							</ul>
 						</nav>
 						<nav class="main">
