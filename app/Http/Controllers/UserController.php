@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
-class HomeController extends Controller
+class UserController extends Controller
 {
 
     /**
@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('writer')->where('author', Auth::id())->orderBy('id', 'DESC')->paginate(3);
+        $posts = Post::with('writer')->where('author', Auth::id())->orderBy('id', 'DESC')->paginate(5);
         return view('profile.home', ['posts' => $posts]);
 
    }
