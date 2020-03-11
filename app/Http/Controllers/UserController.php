@@ -27,7 +27,7 @@ class UserController extends Controller
 
   public function createPost()
 {
-    return view('post_create');
+    return view('posts.post_create');
 }
 public function storePost(Request $request)
     {
@@ -63,7 +63,7 @@ public function storePost(Request $request)
        $post =Post::where('slug',$slug)->first();
        if(Auth::id()==$post->author)
        {
-           return view('post_edit', ['post' => $post]);
+           return view('posts.post_edit', ['post' => $post]);
        }
        else
        {

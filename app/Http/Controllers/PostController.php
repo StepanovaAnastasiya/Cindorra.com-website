@@ -36,6 +36,7 @@ class PostController extends Controller
                 ->join('categories', 'incats.cat_id', '=', 'categories.id')
                 ->join('users', 'posts.author', '=', 'users.id')
                 ->where('incats.cat_id', '=', $cat_id)
+                ->orderBy('created_at', 'DESC')
                 ->paginate(15);
 
 
@@ -46,6 +47,7 @@ class PostController extends Controller
               ->join('posts', 'incats.post_id','=','posts.id')
               ->join('categories', 'incats.cat_id', '=', 'categories.id')
               ->join('users', 'posts.author', '=', 'users.id')
+              ->orderBy('created_at', 'DESC')
               ->paginate(15);
         }
 
