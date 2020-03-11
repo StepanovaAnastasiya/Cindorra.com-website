@@ -96,6 +96,9 @@ public function storePost(Request $request)
       }
 
       $post->save();
+
+      // Updating slug:
+
       $post->slug = null;
       $post->update(['title' => $request->get('title')]);
 
@@ -119,6 +122,8 @@ public function deletePost(Request $request, $slug)
        if(Auth::id()==$post->author)
        {
        $post->delete();
+       DB::table('incats')->where('post_id', '=', $post->id)->delete();
+
        return redirect()->route('home')->with('status', "Post \"$title\" has been successfully deleted!");
        }
        else
