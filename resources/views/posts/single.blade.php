@@ -8,7 +8,7 @@
 								<header>
 									<div class="title">
 										<h2>{{ $post->title }}</h2>
-											<p>Category: {{ $post->category($post->id)->title }}</p>
+											<p>Category: {{ $post->category($post->id)->cat_title }}</p>
 									</div>
 									<div class="meta">
 										<time class="published" datetime="2015-11-01">{{ $post->created_at }}</time>
