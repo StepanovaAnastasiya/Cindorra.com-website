@@ -60,14 +60,13 @@
 								<ul class="actions stacked">
 										@if (Route::has('login'))
 										@auth
-												<li>
-												<a href="{{ url('/profile') }}" class="button large fit">Home</a>
-												<a href="{{ route('logout') }}" class="button large fit" onclick="event.preventDefault();
+												<li><a href="{{ url('/profile') }}" class="button large fit">My profile</a></li>
+
+												<li><a  class="button large fit" onclick="event.preventDefault();
 												document.getElementById('logout-form').submit();">Logout</a>
 												<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 														@csrf
 												</form>
-																				
 												</li>
 										@else
 										<li><a href="{{ route('login') }}" class="button large fit">Login</a></li>
