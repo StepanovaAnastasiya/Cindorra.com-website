@@ -52,7 +52,10 @@ public function storePost(Request $request)
         $post->save();
         $category = $request->get('category');
         DB::insert('insert into incats (post_id, cat_id) values (?, ?)', [$post->id, $category]);
-        return redirect()->route('home')->with('status', 'New post has been successfully created!');
+        // Gettind cat_slug from DB to put into redirect:
+        $cat_slug = DB::table('categories')->where('id', $category)->value('cat_slug');
+
+        return redirect()->route('single_post', ['cat_slug' => $cat_slug, 'slug' => $post->slug])->with('status', 'New post has been successfully created!');
 
        }
 
@@ -60,7 +63,14 @@ public function storePost(Request $request)
 
    public function editPost($cat_slug, $slug)
    {
-       $post =Post::where('slug',$slug)->first();
+       $post = DB::table('incats')
+         ->select('title', 'slug', 'body', 'cat_id','author')
+         ->join('posts', 'incats.post_id','=','posts.id')
+         ->join('categories', 'incats.cat_id', '=', 'categories.id')
+         ->where('posts.slug', '=', $slug)
+         ->first();
+
+
        if(Auth::id()==$post->author)
        {
            return view('posts.post_edit', ['post' => $post]);
@@ -102,12 +112,13 @@ public function storePost(Request $request)
       $post->slug = null;
       $post->update(['title' => $request->get('title')]);
 
-
-        if ($request->get('category')) {
       $category = $request->get('category');
       DB::insert('update incats set cat_id = ? where post_id = ?', [$category,$post->id]);
-    }
-      return redirect()->route('home')->with('status', 'Post has been successfully updated!');
+              // Gettind cat_slug from DB to put into redirect:
+      $cat_slug = DB::table('categories')->where('id', $category)->value('cat_slug');
+
+
+      return redirect()->route('single_post', ['cat_slug' =>$cat_slug , 'slug' => $post->slug])->with('status', 'Post has been successfully updated!');
   }
   else
   {

@@ -14,11 +14,17 @@
                     <form action="{{ route('update_post', ['slug' => $post->slug]) }}" method="post"enctype="multipart/form-data">
                                               {{ csrf_field() }}
                                                <div class="form-group">
-                                               <select required name="category">
-                                               <option disabled selected>Please choose category</option>
-                                               <option value="1">Job post</option>
-                                               <option value="2">Article</option>
-                                               </select>
+                                                 @if ($post->cat_id==1)
+                                                <select required name="category">
+                                                 <option value="1" selected>Job post</option>
+                                                 <option value="2">Article</option>
+                                                </select>
+                                                @else
+                                                 <select required name="category">
+                                                 <option value="1">Job post</option>
+                                                 <option value="2" selected>Article</option>
+                                                 </select>
+                                                 @endif
                                                </div>
                                                 </br>
                         <div class="form-group">
