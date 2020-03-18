@@ -8,11 +8,17 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-    public function show($cat_slug, $slug)
+    public function show($cat_slug, $slug = null)
     {
-
+        if (isset($slug))
+        {
         $post = Post::where('slug',$slug)->first();
         return view('posts.single',['post' => $post]);
+        }
+        else
+        {
+        return redirect()->route('explore',['cat_slug'=>$cat_slug]);
+        }
     }
 
     /**

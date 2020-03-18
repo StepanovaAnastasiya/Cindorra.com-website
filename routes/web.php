@@ -1,7 +1,7 @@
 <?php
 Route::get('/', 'PagesController@index')->name('main');
 Route::get('/explore/{cat_slug?}', 'PostController@explore')->name('explore');
-Route::get('/{cat_slug}/{slug}', 'PostController@show')->name('single_post');
+Route::get('/{cat_slug}/{slug?}', 'PostController@show')->name('single_post');
 
 Auth::routes();
 Route::get('/profile', 'UserController@index')->name('home');
