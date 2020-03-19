@@ -8,7 +8,7 @@
 								<header>
 									<div class="title">
 										<h2>{{ $post->title }}</h2>
-											<p>Category: {{ $post->category($post->id)->cat_title }}</p>
+											<a href="{{ route('explore', ['cat_slug' => $post->category($post->id)->cat_slug]) }}"><p>Category: {{ $post->category($post->id)->cat_title }}</p></a>
 									</div>
 									<div class="meta">
 										<time class="published" datetime="2015-11-01">{{ $post->created_at }}</time>
@@ -18,14 +18,11 @@
 								<span class="image featured"><img src="{{ asset('images/'.$post->image) }}" alt="{{ $post->title }}" /></span>
 
 								{{ $post->body }}
-			<!--					<footer>
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon solid fa-heart">28</a></li>
-										<li><a href="#" class="icon solid fa-comment">128</a></li>
-									</ul>
-								</footer> -->
+
+		<!-- @include ('inc.postfooter') -->
+
 							</article>
+							@include ('inc.footer')
 					</div>
 			</div>
 		@endsection

@@ -12,11 +12,6 @@
             </main>
         </div>
 
-            @if (session('status'))
-               <h4>
-                   {{ session('status') }}
-               </h4>
-           @endif
         <ul class="actions">
           <li><a href="{{ route('create_post') }}" class="button large">Add a new post</a></li>
         </ul>

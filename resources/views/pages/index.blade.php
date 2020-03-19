@@ -26,7 +26,7 @@
 								<header>
 									<div class="title">
 										<h2><a href="{{ route('single_post',['cat_slug' => $post->category($post->id)->cat_slug, 'slug' => $post->slug])  }}">{{ $post->title }}</a></h2>
-										<p>Category: {{ $post->category($post->id)->cat_title }}</p>
+											<a href="{{ route('explore', ['cat_slug' => $post->category($post->id)->cat_slug]) }}"><p>Category: {{ $post->category($post->id)->cat_title }}</p></a>
 									</div>
 									<div class="meta">
 										<time class="published" datetime="2015-10-25">{{ $post->created_at }}</time>
@@ -71,6 +71,6 @@
 									<li><a href="{{ url('/profile') }}" class="button">Add new article or job post</a></li>
 								</ul>
 							</section>
-
+    @include ('inc.footer')
 			</div>
 			@endsection

@@ -48,6 +48,6 @@
 							</article>
 							@endforeach
 							  {{ $posts->links('inc.pagination') }}
-
+    @include ('inc.footer')
 			</div>
 			@endsection
