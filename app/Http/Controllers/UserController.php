@@ -20,6 +20,9 @@ class UserController extends Controller
   public function index()
   {
     $posts = Post::with('writer')->where('author', Auth::id())->orderBy('id', 'DESC')->paginate(5);
+    if (empty($posts)) {
+            return abort(404);
+        }
     return view('profile.home', ['posts' => $posts]);
 
   }
@@ -69,7 +72,9 @@ public function editPost($cat_slug, $slug)
   ->join('categories', 'incats.cat_id', '=', 'categories.id')
   ->where('posts.slug', '=', $slug)
   ->first();
-
+  if (empty($post)) {
+          return abort(404);
+      }
 
   if(Auth::id()==$post->author)
   {
@@ -91,6 +96,9 @@ public function updatePost(Request $request, $slug)
 );
 
 $post = Post::where('slug',$slug)->first();
+if (empty($post)) {
+        return abort(404);
+    }
 if(Auth::id()==$post->author)
 {
 
@@ -129,6 +137,9 @@ else
 public function deletePost(Request $request, $slug)
 {
   $post = Post::where('slug',$slug)->first();
+  if (empty($post)) {
+          return abort(404);
+      }
   $title= $post->title;
   if(Auth::id()==$post->author)
   {

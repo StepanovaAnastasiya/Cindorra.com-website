@@ -13,6 +13,9 @@ class PostController extends Controller
     if (isset($slug))
     {
       $post = Post::where('slug',$slug)->first();
+      if (empty($post)) {
+        return abort(404);
+      }
       return view('posts.single',['post' => $post]);
     }
     else
