@@ -1,8 +1,9 @@
 
+
+<section id="footer">
+<ul class="icons">
 <?php
-
 Use Jorenvh\Share\Providers\ShareServiceProvider;
-
 echo Share::page(url()->current(), 'Cindorra.com')
 ->facebook()
 ->twitter()
@@ -22,3 +23,4 @@ echo Share::page(url()->current(), 'Cindorra.com')
 </section>
  -->
 <p class="copyright">&copy; Untitled. <!-- Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.--></p>
+</section>
